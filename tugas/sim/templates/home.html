@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block konten %}
+
+<div class="jumbotron">
+    <h1 class="display-4">Hallo, Selamat Datang!</h1>
+    <p class="lead">Sistem Pengaduan Mahasiswa.</p>
+    <hr class="my-4">
+    <p><i>Apapun yang dilakukan oleh seseorang itu, hendaknya dapat bermanfaat bagi dirinya sendiri, bermanfaat bagi bangsanya, dan bermanfaat bagi manusia di dunia pada umumnya". - Ki Hadjar Dewantara</i> </p>
+    <a class="btn btn-primary btn-lg" href="{{url_for('rmahasiswa.login_mahasiswa')}}" role="button">Masuk </a>
+  </div>
+{% endblock %}

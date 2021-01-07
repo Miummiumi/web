@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+
+{% block konten %}
+
+<div class="jumbotron">
+   
+    <p class="lead"> <b> <h4>Pengaduan</h4> </b> </p>
+    <hr class="my-4">
+    <!--pegaduan-->
+    <form method="POST">
+        {{form.hidden_tag()}}
+      <div class="form-group">
+        {{form.subjek.label(class="form-control-label")}}
+        {% if form.subjek.errors %}
+          {{form.subjek(class="form-control is-invalid")}} 
+          
+          <div class="invalid-feedback">
+            {% for error in form.subjek.errors %}
+            <span>{{error}}</span>
+            {% endfor %}
+          </div>
+        {% else%}
+          {{form.subjek(class="form-control")}} 
+        {% endif%}
+      </div>
+      
+      <div class="form-group">
+        {{form.kategori.label(class="form-control-label")}}
+        {% if form.kategori.errors %}
+          {{form.kategori(class="form-control is-invalid")}} 
+          
+          <div class="invalid-feedback">
+            {% for error in form.kategori.errors %}
+            <span>{{error}}</span>
+            {% endfor %}
+          </div>
+        {% else%}
+          {{form.kategori(class="form-control")}} 
+        {% endif%}
+      </div>
+      <div class="form-group">
+        {{form.detail_pengaduan.label(class="form-control-label")}}
+        {% if form.detail_pengaduan.errors %}
+          {{form.detail_pengaduan(class="form-control is-invalid")}} 
+          
+          <div class="invalid-feedback">
+            {% for error in form.detail_pengaduan.errors %}
+            <span>{{error}}</span>
+            {% endfor %}
+          </div>
+        {% else%}
+          {{form.detail_pengaduan(class="form-control")}} 
+        {% endif%}
+      </div>
+  
+      <div class="form-group">
+          {{form.submit(class="btn btn-primary")}}
+      </div>
+      
+    </form>
+        <hr class="my-4">
+        <h4>Data Pengaduan</h4>
+        <table class="table table-responsive table-hover">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">ID Mahasiswa</th>
+                <th scope="col">Tanggal</th>
+                <th scope="col">Subjek</th>
+                <th scope="col">Edit</th>
+                <th scope="col">Hapus</th>
+            </tr>
+            </thead>
+            <tbody>
+            {%for data in dt_pengaduan%}  
+            <tr>
+                
+                <th > <a href="{{url_for('rmahasiswa.ket_pengaduan',ed_id=data.id)}}"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-person" viewBox="0 0 16 16">
+                  <path d="M11 8a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                  <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2v9.255S12 12 8 12s-5 1.755-5 1.755V2a1 1 0 0 1 1-1h5.5v2z"/>
+                </svg></a></th>
+                 <td>{{data.mahasiswa_id}}</td>
+                 <td>{{data.tgl_post}}</td>
+                <td>{{data.subjek}}</td>
+                <td> <a href="{{url_for('rmahasiswa.edt_pengaduan', ed_id=data.id)}}" class="btn btn-primary btn-sm">Edit</a> </td>
+                <td> <a href="/hapuspengaduan/{{data.id}}" class="btn btn-danger btn-sm" onclick="return confirm('anda yakin untuk menghapus data')"> Hapus</a></td>
+            </tr>
+
+
+            {% endfor %}
+
+            <!-- Small modal -->
+            
+
+            </tbody>
+        </table>
+
+  </div>
+
+{% endblock %}
